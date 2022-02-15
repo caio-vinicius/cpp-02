@@ -1,4 +1,4 @@
-/* Copyright (c) 2022 Caio Souza. All rights reserved. */
+/* Copyright (c) 2022 Caio Souza, Gustavo Ariadno. All rights reserved. */
 /* 42 */
 
 #ifndef FIXED_H
@@ -6,9 +6,15 @@
 
 class Fixed {
  private:
-
+    int rawBits;
+    static const int fractional;
  public:
-    
+    Fixed(void);
+    Fixed(Fixed const &src);
+    ~Fixed(void);
+    Fixed &operator=(Fixed const &rhs);
+    int getRawBits(void) const;
+    void setRawBits(int const raw);
 };
 
 #endif
