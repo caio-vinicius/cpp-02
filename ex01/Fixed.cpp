@@ -2,9 +2,8 @@
 /* 42 */
 
 #include <iostream>
-#include <bitset>
-
 #include <cmath>
+
 #include "Fixed.hpp"
 
 const int Fixed::fractionalBits = 8;
@@ -14,8 +13,6 @@ Fixed::Fixed() {
     Fixed::rawBits = 0;
 }
 
-//std::cout << ": " << std::bitset<8>(fixedPointValue) << std::endl;
-
 Fixed::Fixed(const int fixedPointValue) {
     std::cout << "Int constructor called" << std::endl;
     Fixed::rawBits = fixedPointValue * (1 << Fixed::fractionalBits);
@@ -23,9 +20,7 @@ Fixed::Fixed(const int fixedPointValue) {
 
 Fixed::Fixed(const float fixedPointValue) {
     std::cout << "Float constructor called" << std::endl;
-    //Fixed::rawBits = roundf(fixedPointValue * (1 << Fixed::fractionalBits));
-    Fixed::rawBits = fixedPointValue * (1 << Fixed::fractionalBits);
-    //Fixed::rawBits = fixedPointValue;
+    Fixed::rawBits = roundf(fixedPointValue * (1 << Fixed::fractionalBits));
 }
 
 Fixed::Fixed(Fixed const &src) {
@@ -39,36 +34,20 @@ Fixed::~Fixed() {
 
 Fixed   &Fixed::operator=(Fixed const &rhs) {
     std::cout << "Copy assignment operator called" << std::endl;
-    if (this == &rhs)
-        return *this;
-    this->rawBits = rhs.getRawBits();
+    if (this != &rhs)
+        this->rawBits = rhs.rawBits;
     return *this;
 }
 
-int     Fixed::getRawBits(void) const {
-    //std::cout << "getRawBits member function called" << std::endl;
-    return (Fixed::rawBits);
-}
-
-int     Fixed::getFractionalBits(void) const {
-    //std::cout << "getRawBits member function called" << std::endl;
-    return (Fixed::fractionalBits);
-}
-
-void    Fixed::setRawBits(int const raw) {
-    //std::cout << "setRawBits member function called" << std::endl;
-    Fixed::rawBits = raw;
-}
-    
 float   Fixed::toFloat(void) const {
-    return 0.0;
+    return ((float)Fixed::rawBits / (1 << Fixed::fractionalBits));
 }
 
 int     Fixed::toInt(void) const {
-    return 0;
+    return (Fixed::rawBits / (1 << Fixed::fractionalBits));
 }
 
 std::ostream &operator<<(std::ostream &stream, Fixed const &rhs) {
-    stream << ((float)rhs.getRawBits() / (1 << rhs.getFractionalBits()));
+    stream << rhs.toFloat();
     return stream;
 }

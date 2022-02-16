@@ -15,9 +15,6 @@ class Fixed {
     Fixed(const float floatingPointValue);
     ~Fixed(void);
     Fixed &operator=(Fixed const &rhs);
-    int getRawBits(void) const;
-    int getFractionalBits(void) const;
-    void setRawBits(int const raw);
     float toFloat(void) const;
     int toInt(void) const;
 };
