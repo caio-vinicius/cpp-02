@@ -113,3 +113,27 @@ Fixed Fixed::operator--(int) {
     fixed.rawBits = rawBits--;
     return (fixed);
 }
+
+Fixed &Fixed::min(Fixed &x, Fixed &y) {
+    if (x < y)
+        return (x);
+    return (y);
+}
+
+Fixed const &Fixed::min(Fixed const &x, Fixed const &y) {
+    if (x < y)
+        return (x);
+    return (y);
+}
+
+Fixed &Fixed::max(Fixed &x, Fixed &y) {
+    if (x > y)
+        return (x);
+    return (y);
+}
+
+Fixed const &Fixed::max(Fixed const &x, Fixed const &y){
+    if (x > y)
+        return (x);
+    return (y);
+}

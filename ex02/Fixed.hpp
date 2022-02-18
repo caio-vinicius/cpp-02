@@ -22,6 +22,10 @@ class Fixed {
     Fixed operator++(int);
     Fixed operator--();
     Fixed operator--(int);
+    static Fixed &min(Fixed &x, Fixed &y);
+    static const Fixed &min(Fixed const &x, Fixed const &y);
+    static Fixed &max(Fixed &x, Fixed &y);
+    static const Fixed &max(Fixed const &x, Fixed const &y);
 };
     
 std::ostream &operator<<(std::ostream &stream, Fixed const &rhs);
@@ -37,6 +41,5 @@ Fixed operator+(Fixed const &lhs, Fixed const &rhs);
 Fixed operator-(Fixed const &lhs, Fixed const &rhs);
 Fixed operator*(Fixed const &lhs, Fixed const &rhs);
 Fixed operator/(Fixed const &lhs, Fixed const &rhs);
-
 
 #endif
